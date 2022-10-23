@@ -1,0 +1,32 @@
+name: Demographics Worker
+
+on:
+  schedule:
+    - cron: '* */1 * * *'
+  workflow_dispatch:
+
+concurrency: demographics_worker
+
+jobs:
+  run:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v3
+        name: Capturing Demographics
+      - uses: actions/setup-python@v4
+        name: Setup Python
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run worker
+        run: python main.py
+        env:
+          TOWNSCRIPT_AUTH: ${{ secrets.TOWNSCRIPT_AUTH }}
+          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          GCP_SERVICE_ACCOUNT_PRIVATE_KEY_ID: ${{ secrets.GCP_SERVICE_ACCOUNT_PRIVATE_KEY_ID }}
+          GCP_SERVICE_ACCOUNT_PRIVATE_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_PRIVATE_KEY }}
+          GCP_SERVICE_ACCOUNT_CLIENT_EMAIL: ${{ secrets.GCP_SERVICE_ACCOUNT_CLIENT_EMAIL }}
+          GCP_SERVICE_ACCOUNT_CLIENT_ID: ${{ secrets.GCP_SERVICE_ACCOUNT_CLIENT_ID }}
+          GCP_SERVICE_ACCOUNT_CLIENT_CERT_URL: ${{ secrets.GCP_SERVICE_ACCOUNT_CLIENT_CERT_URL }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
