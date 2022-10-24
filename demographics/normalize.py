@@ -10,6 +10,7 @@ lookup_set = {
     'Coimbatore': ['coimbatore', 'covai', 'kovai'],
     'Bengaluru': ['bengaluru', 'bangalore'],
     'Thiruvallur': ['thiruvallur', 'tiruvallur', 'trivallur', 'thiruvalur', 'tiruvalur', 'trivalur', 'thiruvaloor', 'tiruvaloor', 'trivaloor'],
+    'Pondichery': ['pondichery', 'pondy', 'puducherry', 'puduchery', 'puducheri', 'puduchery'],
 }
 
 
@@ -20,4 +21,4 @@ def normalize(value):
             # Just shamelessly using it just because I am lazy.
             if value.lower().startswith(match_item) or value.lower().endswith(match_item) or match_item in value.lower():
                 return key
-    return value
+    return value.title()
