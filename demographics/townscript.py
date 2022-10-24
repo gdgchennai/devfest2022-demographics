@@ -53,7 +53,7 @@ class Townscript:
             record = {
                 "job_title": form[ROLE],
                 "organization": normalize(form[ORG]),
-                "city": form[CITY],
+                "city": normalize(form[CITY]),
                 "gender": form[GENDER],
                 "no_of_devfest": form[NO_OF_DEVFESTS] if int(form[NO_OF_DEVFESTS]) < 10 else 0,
                 "gdsc": form[IS_GDSC],
@@ -92,7 +92,7 @@ class Townscript:
             record = {
                 "job_title": form[ROLE],
                 "organization": normalize(form[ORG]),
-                "city": form[CITY],
+                "city": normalize(form[CITY]),
                 "gender": form[GENDER],
                 "no_of_devfest": form[NO_OF_DEVFESTS] if int(form[NO_OF_DEVFESTS]) < 10 else 0,
                 "gdsc": form[IS_GDSC],
